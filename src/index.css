@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* styles.css */
+.response-text {
+    line-height: 1.6; /* Adjust line height for better readability */
+    margin-bottom: 1rem; /* Space between paragraphs */
+  }
+  
+  .response-text h1, 
+  .response-text h2, 
+  .response-text h3 {
+    margin-top: 1.5rem; /* Top margin for headers */
+    margin-bottom: 0.5rem; /* Bottom margin for headers */
+  }
+  
+  .response-text p {
+    margin-bottom: 1rem; /* Space between paragraphs */
+  }
+  

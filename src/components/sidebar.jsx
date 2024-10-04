@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MenuClose from "../icons/menu-close";
 import MenuEdit from "../icons/menu-edit";
 import {
@@ -13,12 +13,27 @@ import {
   sidebar,
   sidebarHeader,
 } from "../styles/sidebar";
-import Chatbot from "../icons/chat-bot";
 import Explore from "../icons/explore";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const Sidebar = () => {
-  const chats = [
+const Sidebar = ({ setIsWelcome, setMessages }) => {
+  const [chats, setChats] = useState([]);
+
+  const handleAddChat = () => {
+    const newChat = {
+      day: "today",
+      chats: [
+        "Hey, have you finished the report yet?",
+        "I’m almost done, just need to add the graphs.",
+        "Let’s meet in 10 minutes to discuss the final points.",
+      ],
+    };
+    setMessages([]);
+    setIsWelcome(true);
+    // setChats([...chats, newChat]);
+  };
+
+  const chatsArray = [
     {
       day: "today",
       chats: [
@@ -65,20 +80,35 @@ const Sidebar = () => {
     <div className={sidebar}>
       <div className={sidebarHeader}>
         <MenuClose />
-        <MenuEdit />
+        <Icon
+          icon="basil:add-outline"
+          className="text-primary text-3xl"
+          onClick={handleAddChat}
+        />
+        {/* <MenuEdit /> */}
       </div>
       <div className={chatbootheader}>
-        <Chatbot />
-        Chat Tech
+        <Icon icon="token-branded:hgpt" className="text-3xl" />
+        Chat-AI
       </div>
       <div className={chatTechHeader}>
         <Explore />
         Explore Chat Tech
       </div>
-      <div className={chatListing} style={{ scrollbarWidth: "none" }}>
+      <div
+        className={chatListing}
+        style={{ scrollbarWidth: "5px", scrollbarColor: "red" }}
+      >
         {chats.map((item, index) => (
           <div className="mt-5" key={index}>
-            <h4 className={chatDay}>{item.day}</h4>
+            <h4 className={chatDay}>
+              {" "}
+              <Icon
+                icon="material-symbols-light:calendar-today-rounded"
+                className="text-xl text-primary "
+              />{" "}
+              {item.day}
+            </h4>
             {item.chats.map((item, index) => (
               <div key={index} className={chatList}>
                 <h3 className={chatName}>{item}</h3>
